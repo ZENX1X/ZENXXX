@@ -15,7 +15,7 @@
       overflow: hidden;
     }
     h1 {
-      margin-top: 20%;
+      margin-top: 20px;
       font-size: 3rem;
       animation: fadeIn 2s ease-in-out;
     }
@@ -61,21 +61,63 @@
       0% { transform: translateY(100vh) translateX(0); opacity: 1; }
       100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
     }
+    /* เค้ก */
+    .cake {
+      position: relative;
+      width: 200px;
+      margin: 30px auto;
+    }
+    .layer {
+      width: 200px;
+      height: 50px;
+      background: #f39c12;
+      border: 3px solid #e67e22;
+      margin: 5px auto;
+      border-radius: 10px;
+    }
+    .layer:nth-child(2) {
+      width: 180px;
+    }
+    .layer:nth-child(3) {
+      width: 160px;
+    }
+    .candle {
+      position: absolute;
+      top: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 30px;
+      background: #ecf0f1;
+      border-radius: 5px;
+    }
+    .flame {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 15px;
+      background: radial-gradient(circle, yellow, orange);
+      border-radius: 50%;
+      animation: flicker 0.8s infinite alternate;
+    }
+    @keyframes flicker {
+      from { transform: translateX(-50%) scale(1); }
+      to { transform: translateX(-50%) scale(1.1); }
+    }
   </style>
 </head>
 <body>
   <h1>🎉 Happy Birthday! 🎂</h1>
   <p>Happy Birthday ค้าบ ❤️</p>
-  <dr></dr>
-  <p>ขอมอบเว็ปไซต์นี้ แทนการ์ดอวยพรวันเกิดนะค้าบบ 🎁 </p>
+  <p>ขอมอบเว็บไซต์นี้แทนการ์ดอวยพรวันเกิดนะค้าบ 🎁</p>
   <p>ขอให้ปีนี้เป็นปีที่เต็มไปด้วยความสุขและความสำเร็จในทุกๆ ด้าน ขอให้สุขภาพแข็งแรง ร่าเริงในทุกๆวัน ✨ ไม่ว่าจะสุขหรือทุกข์ก็พร้อมอยู่เคียงข้างกัน และ ขอให้วันนี้เป็นวันที่พิเศษที่สุดสำหรับแก้วตานะค้าบ ❤️</p>
   <button class="button" onclick="playMusic()">[ของขวัญ วันเกิด]</button>
-  <dr></dr>
   <label for="volumeControl">ปรับระดับเสียง:</label>
   <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1" onchange="adjustVolume(this.value)">
 
   <div class="balloons">
-    <!-- บอลลูนลอย -->
     <div class="balloon" style="left: 10%; background-color: #ff6f61; animation-duration: 5s;"></div>
     <div class="balloon" style="left: 30%; background-color: #fcb045; animation-duration: 6s;"></div>
     <div class="balloon" style="left: 50%; background-color: #e57373; animation-duration: 7s;"></div>
@@ -85,15 +127,23 @@
 
   <audio id="birthdaySong" src="SSS.mp3"></audio>
 
+  <div class="cake">
+    <div class="candle">
+      <div class="flame"></div>
+    </div>
+    <div class="layer"></div>
+    <div class="layer"></div>
+    <div class="layer"></div>
+  </div>
+
   <script>
     function playMusic() {
       const audio = document.getElementById('birthdaySong');
-      audio.play(10);
+      audio.play();
     }
-
     function adjustVolume(value) {
       const audio = document.getElementById('birthdaySong');
-      audio.volume = parseFloat(value); // ปรับระดับเสียง
+      audio.volume = parseFloat(value);
       console.log(`ระดับเสียง: ${audio.volume}`);
     }
   </script>
